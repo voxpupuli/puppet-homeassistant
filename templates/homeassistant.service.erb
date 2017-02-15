@@ -1,0 +1,15 @@
+# Managed with puppet.
+[Unit]
+Description=Home Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=<%= @user %>
+Environment=VIRTUAL_ENV="<%= @home %>"
+Environment=PATH="$VIRTUAL_ENV/bin:$PATH"
+ExecStart=<%= @home %>/bin/hass -c "<%= @config %>"
+
+[Install]
+WantedBy=multi-user.target
+
