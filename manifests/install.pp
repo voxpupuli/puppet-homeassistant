@@ -15,9 +15,9 @@ class homeassistant::install (
     ensure => present,
     home   => $home,
     system => true,
-  } 
+  }
 
-  file{'/etc/homeassistant':
+  file{$config:
     ensure => directory,
     owner  => $user,
   }
@@ -32,12 +32,12 @@ class homeassistant::install (
   python::pyvenv{$home:
     ensure => present,
     owner  => $user,
-  } 
+  }
 
   python::pip{'homeassistant':
     ensure     => present,
     virtualenv => $home,
-  } 
+  }
   ::systemd::unit_file { 'homeassistant.service':
     content => template("${module_name}/homeassistant.service.erb"),
   }
