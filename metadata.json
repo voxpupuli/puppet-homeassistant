@@ -1,12 +1,22 @@
 {
   "name": "puppet-homeassistant",
   "version": "0.1.0",
-  "author": "puppet",
-  "summary": "Home Assistant - home automation platform. https://home-assistant.io/",
+  "author": "Vox Pupuli",
+  "summary": "Configures Home Assistant - home automation platform. https://home-assistant.io/",
   "license": "Apache-2.0",
-  "source": "https://github.com/traylenator/puppet-homeassistant",
-  "project_page": "https://github.com/traylenator/puppet-homeassistant",
-  "issues_url": "https://github.com/traylenator/puppet-homeassistant/issues",
+  "source": "https://github.com/voxpupuli/puppet-homeassistant",
+  "project_page": "https://github.com/voxpupuli/puppet-homeassistant",
+  "issues_url": "https://github.com/voxpupuli/puppet-homeassistant/issues",
+  "tags": [
+    "automation",
+    "iot",
+    "hue",
+    "nest",
+    "kodi",
+    "plex",
+    "ifttt",
+    "sonos"
+  ],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.6.0 < 5.0.0"}
   ],
