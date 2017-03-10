@@ -9,6 +9,8 @@ describe 'homeassistant' do
         it { should contain_class('homeassistant') }
         it { should contain_user('homeassistant').with_home('/srv/homeassistant') }
         it { should contain_user('homeassistant').with_system(true) }
+        it { should contain_user('homeassistant').with_gid('homeassistant') }
+        it { should contain_group('homeassistant').with_system(true) }
         it { should contain_file('/etc/homeassistant').with_ensure('directory') }
         it { should contain_file('/etc/homeassistant').with_owner('homeassistant') }
         it { should contain_class('python') }
@@ -22,9 +24,11 @@ describe 'homeassistant' do
           :home         => '/foo',
           :config       => '/etc/bar',
           :user         => 'steve',
-          :dependencies => ['abc','def'],
+          :group        => 'friday',
          }  
         end
+        it { should contain_group('friday') }
+        it { should contain_user('steve').with_gid('friday') }
         it { should contain_user('steve').with_home('/foo') }
         it { should contain_user('steve').with_system(true) }
         it { should contain_file('/etc/bar').with_ensure('directory') }
@@ -34,8 +38,6 @@ describe 'homeassistant' do
         it { should contain_systemd__unit_file('homeassistant.service').with_content(%r{^User=steve}) }
         it { should contain_systemd__unit_file('homeassistant.service').with_content(%r{^ExecStart=/foo/bin/hass -c "/etc/bar"}) }
         it { should contain_service('homeassistant').with_enable(true) }
-        it { should contain_package('abc').with_ensure('present') }
-        it { should contain_package('def').with_ensure('present') }
       end
     end
   end

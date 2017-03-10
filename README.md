@@ -28,7 +28,6 @@ class{'::homeassistant':
   user         => 'steve',
   home         => '/home/steve' 
   config       => '/etc/myconfig',
-  dependencies => ['python-pyvenv'],
 }
 ```
 
@@ -36,8 +35,6 @@ class{'::homeassistant':
 * `user` - Specify a username to run the service as. Default: `homeassistant`
 * `home` - Home directory of user and virtualeven for software. Default: `/srv/homeassistant`
 * `config` - Configuration directory. Default: `/etc/homeassistant`
-* `dependencies` - A list of packages to install in advance. Defaults to sensible
-  values based the on `$::osfamaily` fact.
 
 ## Authors
 puppet-homeassistant is maintained by VoxPupuli. It was

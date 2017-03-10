@@ -1,9 +1,9 @@
 class homeassistant (
-  $user   = 'homeassistant',
-  $home   = '/srv/homeassistant',
-  $config = '/etc/homeassistant',
-  $dependencies = $homeassistant::params::dependencies,
-) inherits homeassistant::params {
+  $user         = 'homeassistant',
+  $group        = 'homeassistant',
+  $home         = '/srv/homeassistant',
+  $config       = '/etc/homeassistant',
+) {
 
   class{'::homeassistant::install':} ~>
   class{'::homeassistant::service':}
