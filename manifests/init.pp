@@ -5,8 +5,8 @@ class homeassistant (
   $config       = '/etc/homeassistant',
 ) {
 
-  class{'::homeassistant::install':} ~>
-  class{'::homeassistant::service':}
+  class{'::homeassistant::install':}
+  ~> class{'::homeassistant::service':}
 
   contain ::homeassistant::install
   contain ::homeassistant::service
