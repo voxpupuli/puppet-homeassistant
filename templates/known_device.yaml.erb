@@ -1,0 +1,12 @@
+<%= @name %>:
+  hide_if_away: <%= @hide_if_away %> 
+  track: <%= @track %> 
+  mac: <%= @mac %>
+  name: <%= @friendly_name %>
+<%- if @picture -%>
+  picture: <%= @picture %>
+<%- end -%>
+<%- if @gravatar -%>
+  gravatar: <%= @gravatar %>
+<%- end -%>
+

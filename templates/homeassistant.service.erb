@@ -5,10 +5,10 @@ After=network.target
 
 [Service]
 Type=simple
-User=<%= @user %>
+User=homeassistant
 Environment=VIRTUAL_ENV="<%= @home %>"
 Environment=PATH="$VIRTUAL_ENV/bin:$PATH"
-ExecStart=<%= @home %>/bin/hass -c "<%= @config %>"
+ExecStart=<%= @home %>/bin/hass -c "<%= @confdir %>"
 
 [Install]
 WantedBy=multi-user.target

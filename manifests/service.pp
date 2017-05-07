@@ -1,5 +1,4 @@
 class homeassistant::service (
-  $user         = $homeassistant::user,
   $home         = $homeassistant::home,
 ) inherits homeassistant {
 

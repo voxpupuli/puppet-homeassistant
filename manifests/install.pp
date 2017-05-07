@@ -1,27 +1,33 @@
 class homeassistant::install (
-  $user         = $homeassistant::user,
-  $group        = $homeassistant::group,
-  $home         = $homeassistant::home,
-  $config       = $homeassistant::config,
+  $home    = $homeassistant::home,
+  $confdir = $homeassistant::confdir,
 ) inherits homeassistant {
 
-  group{$group:
+  group{'homeassistant':
     ensure => present,
     system => true,
   }
 
-  user{$user:
+  user{'homeassistant':
     ensure => present,
     home   => $home,
     system => true,
-    gid    => $group,
+    gid    => 'homeassistant',
   }
 
-  file{$config:
+  file{$confdir:
     ensure => directory,
-    owner  => $user,
-    group  => $group,
+    owner  => 'homeassistant',
+    group  => 'homeassistant',
   }
+  file{"${confdir}/components":
+    ensure  => directory,
+    owner   => 'homeassistant',
+    group   => 'homeassistant',
+    purge   => true,
+    recurse => true,
+  }
+
 
   class{'::python':
     ensure     => present,
@@ -33,15 +39,15 @@ class homeassistant::install (
 
   python::pyvenv{$home:
     ensure => present,
-    owner  => $user,
-    group  => $group,
+    owner  => 'homeassistant',
+    group  => 'homeassistant',
   }
 
   python::pip{'homeassistant':
     ensure     => present,
     virtualenv => $home,
-    owner      => $user,
-    group      => $user,
+    owner      => 'homeassistant',
+    group      => 'homeassistant',
   }
   systemd::unit_file { 'homeassistant.service':
     content => template("${module_name}/homeassistant.service.erb"),

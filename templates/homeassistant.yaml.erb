@@ -1,0 +1,13 @@
+# Puppet generated configration.
+homeassistant:
+  # Name of the location where Home Assistant is Running
+  name: <%= @location_name %>
+  # Location, required to calculate sunrise, sunset.
+  latitude: <%= @latitude %>
+  longitude: <%= @longitude %>
+  elevation: <%= @elevation %>
+  # Metric or Imperial.
+  unit_system: <%= @unit_system %>
+  # Time zone
+  time_zone: <%= @time_zone %>
+
