@@ -1,7 +1,7 @@
-define homeassistant::component(
-   $component = $name,
-   $config = undef,
-   String $confdir = '/etc/homeassistant',
+define homeassistant::component (
+  $component = $name,
+  $config = undef,
+  String $confdir = '/etc/homeassistant',
 ) {
 
   include ::homeassistant
@@ -9,7 +9,7 @@ define homeassistant::component(
   if $component == $name {
     $_instance  = $component
   } else {
-     $_instance = "${component} ${name}"
+    $_instance = "${component} ${name}"
   }
 
 
