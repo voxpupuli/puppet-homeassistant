@@ -27,7 +27,7 @@ describe 'homeassistant::component' do
       context 'with config parameters set' do
         let(:params) do
           {
-            config: { 'abc' => %w[def ijk] }
+            config: { 'abc' => %w(def ijk) }
           }
         end
         it { is_expected.to contain_concat__fragment('mine').with_content(%r{^mine: !include components/mine/mine.yaml$}) }
@@ -39,7 +39,7 @@ describe 'homeassistant::component' do
         let(:params) do
           {
             component: 'special',
-            config: { 'abc' => %w[def ijk] }
+            config: { 'abc' => %w(def ijk) }
           }
         end
         it { is_expected.to contain_concat__fragment('mine').with_content(%r{^special mine: !include components/special/mine.yaml$}) }
@@ -47,7 +47,6 @@ describe 'homeassistant::component' do
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^abc:$}) }
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^\s*- def$}) }
       end
-
     end
   end
 end
