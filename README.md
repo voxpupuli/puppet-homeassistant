@@ -31,7 +31,7 @@ class{'::homeassistant':
     elevation     => 505,
     unit_system   => 'metric',
     time_zone     => 'Europe/Paris'
-  }
+}
 
 ```
 
@@ -44,7 +44,8 @@ class{'::homeassistant':
 Simple components with no configuration.
 
 ```puppet
-homeassistant::component{[
+homeassistant::component{
+  [
     'config',
     'http',
     'frontend',
@@ -54,7 +55,8 @@ homeassistant::component{[
     'history',
     'sun',
     'logbook',
-  ]:}
+  ]:
+}
 ```
 
 Components with configuration.
