@@ -1,6 +1,6 @@
 {
   "name": "puppet-homeassistant",
-  "version": "0.1.2-rc0",
+  "version": "0.1.2",
   "author": "Vox Pupuli",
   "summary": "Configures Home Assistant - home automation platform. https://home-assistant.io/",
   "license": "Apache-2.0",
