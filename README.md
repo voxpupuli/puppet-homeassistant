@@ -25,10 +25,10 @@ or with a custom configuration.
 
 ```puppet
 class{'::homeassistant':
-    location_name => '245b Rue d\'Allemogne',
-    latitude      => 46.237,
-    longitude     => 5.981,
-    elevation     => 505,
+    location_name => 'Arc de Triomphe',
+    latitude      => 48.8738,
+    longitude     => 2.2950,
+    elevation     => 300,
     unit_system   => 'metric',
     time_zone     => 'Europe/Paris'
 }
