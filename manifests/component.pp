@@ -27,7 +27,7 @@ define homeassistant::component (
       ensure  => file,
       owner   => 'homeassistant',
       group   => 'homeassistant',
-      content => inline_template("# Puppet config for component <%= @_instance %> \n<%= @config.to_yaml %>\n"),
+      content => inline_template("# Puppet config for component <%= @_instance %> \n<%= @config.to_yaml(:line_width => -1) %>\n"),
       notify  => Service['homeassistant'],
     }
   } else {
