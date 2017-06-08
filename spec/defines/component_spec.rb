@@ -49,6 +49,16 @@ describe 'homeassistant::component' do
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^abc:$}) }
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^\s*- def$}) }
       end
+      context 'with complicated value with spaces in' do
+        let(:params) do
+          {
+            component: 'long',
+            config: { 'line' => 'this absolutely normal sentence is more than eighty characters long because it IS' }
+          }
+        end
+
+        it { is_expected.to contain_file('/etc/homeassistant/components/long/mine.yaml').with_content(%r{^line:\s+this absolutely normal sentence is more than eighty characters long because it IS$}) }
+      end
     end
   end
 end

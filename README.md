@@ -77,6 +77,36 @@ homeassistant::component{'device_tracker':
 }
 ```
 
+Multiple Instances of one Component, e.g. Switches
+
+```puppet
+homeassistant::component{'myswitchs':
+  component => 'switch',
+  config    => [
+                 {'platform' => 'google',
+                 },
+                 {'platform' => 'tplink',
+                  'host'     => 'myplug.example.org',
+                  'username' => 'foo',
+                  'password' => 'bar',
+                 },
+               ],
+  }
+}
+homeassistant::component{'otherswitches':
+  component => 'switch',
+  config    => {
+    platform => 'command_line',
+    switches => {
+                  'command_on'    => '/bin/echo on > /tmp/hi',
+                  'command_off'   => '/bin/ehco off > /tmp/hi',
+                  'command_state' => '/bin/grep -q on /tmp/hi',
+                  'friendly_name' => 'Is the file on',
+                }
+    }
+  }
+}
+```
 
 ## Authors
 puppet-homeassistant is maintained by VoxPupuli. It was
