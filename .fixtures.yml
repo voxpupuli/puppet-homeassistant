@@ -5,5 +5,3 @@ fixtures:
     python: 'https://github.com/stankevich/puppet-python'
     epel: 'https://github.com/stahnma/puppet-module-epel.git'
     systemd: 'https://github.com/camptocamp/puppet-systemd'
-  symlinks:
-   "homeassistant": "#{source_dir}"
