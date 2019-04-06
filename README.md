@@ -1,4 +1,4 @@
-# Puppet module for Home Assistant 
+# Puppet module for Home Assistant
 
 [![Build Status](https://travis-ci.org/voxpupuli/puppet-homeassistant.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-homeassistant)
 [![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-homeassistant/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-homeassistant)
@@ -64,7 +64,7 @@ Components with configuration.
 ```puppet
 homeassistant::component{'tts':
   config => {'platform' => 'google'}
-} 
+}
 
 homeassistant::component{'device_tracker':
   config => [
