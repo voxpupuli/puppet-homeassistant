@@ -5,7 +5,7 @@ describe 'homeassistant::component' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts
+        facts.merge({python3_version: '3.5'})
       end
       let(:pre_condition) do
         'class{"homeassistant":
