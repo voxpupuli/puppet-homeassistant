@@ -11,12 +11,12 @@ class homeassistant (
   Boolean $known_devices_replace = false,
 ) {
 
-  class{'::homeassistant::install':}
-  -> class{'::homeassistant::config':}
-  ~> class{'::homeassistant::service':}
+  class{'homeassistant::install':}
+  -> class{'homeassistant::config':}
+  ~> class{'homeassistant::service':}
 
-  contain ::homeassistant::install
-  contain ::homeassistant::config
-  contain ::homeassistant::service
+  contain homeassistant::install
+  contain homeassistant::config
+  contain homeassistant::service
 
 }

@@ -4,7 +4,7 @@ define homeassistant::component (
   String $confdir = '/etc/homeassistant',
 ) {
 
-  include ::homeassistant
+  include homeassistant
 
   if $component == $name {
     $_instance  = $component
