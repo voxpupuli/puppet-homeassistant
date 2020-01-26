@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 User=homeassistant
 Environment=VIRTUAL_ENV="<%= @home %>"
-Environment=PATH="$VIRTUAL_ENV/bin:$PATH"
+Environment=PATH="<%= @home %>/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ExecStart=<%= @home %>/bin/hass -c "<%= @confdir %>"
 
 [Install]
