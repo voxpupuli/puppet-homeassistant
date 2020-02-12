@@ -29,6 +29,7 @@ describe 'homeassistant' do
         it { is_expected.to contain_python__pyvenv('/srv/homeassistant') }
         it { is_expected.to contain_systemd__unit_file('homeassistant.service').with_content(%r{^User=homeassistant}) }
         it { is_expected.to contain_systemd__unit_file('homeassistant.service').with_content(%r{^ExecStart=/srv/homeassistant/bin/hass -c "/etc/homeassistant"}) }
+        it { is_expected.to contain_systemd__unit_file('homeassistant.service').with_content(%r{^Environment=PATH="/srv/homeassistant/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"}) }
         it { is_expected.to contain_service('homeassistant').with_enable(true) }
         it { is_expected.to contain_concat('configuration.yaml').with_path('/etc/homeassistant/configuration.yaml') }
         it { is_expected.to contain_concat__fragment('homeassistant').with_target('configuration.yaml') }
