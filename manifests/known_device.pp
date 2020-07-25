@@ -1,4 +1,4 @@
-define homeassistant::known_device(
+define homeassistant::known_device (
   String  $mac,
   Boolean $hide_if_away = true,
   String $friendly_name = $title,
@@ -6,11 +6,9 @@ define homeassistant::known_device(
   Optional[String] $picture = undef,
   Optional[String] $gravatar = undef,
 ) {
-
-  concat::fragment{"${title}_knowndevice":
+  concat::fragment { "${title}_knowndevice":
     target  => 'known_devices.yaml',
     order   => '05',
     content => template('homeassistant/known_device.yaml.erb'),
   }
-
 }
