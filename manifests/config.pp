@@ -8,20 +8,19 @@ class homeassistant::config (
   $known_devices = $homeassistant::known_devices,
   $known_devices_replace = $homeassistant::known_devices_replace,
 ) inherits homeassistant {
-
-  concat{'configuration.yaml':
+  concat { 'configuration.yaml':
     path   => "${confdir}/configuration.yaml",
     owner  => 'homeassistant',
     group  => 'homeassistant',
     notify => Service['homeassistant'],
   }
-  concat::fragment{'homeassistant':
+  concat::fragment { 'homeassistant':
     target  => 'configuration.yaml',
     order   => '00',
     content => template('homeassistant/homeassistant.yaml.erb'),
   }
 
-  concat{'known_devices.yaml':
+  concat { 'known_devices.yaml':
     path    => "${confdir}/known_devices.yaml",
     owner   => homeassistant,
     group   => homeassistant,
@@ -33,5 +32,4 @@ class homeassistant::config (
   if $known_devices {
     create_resources('homeassistant::known_device',$known_devices)
   }
-
 }
