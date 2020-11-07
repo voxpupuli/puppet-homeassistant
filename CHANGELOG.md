@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v1.0.0](https://github.com/voxpupuli/puppet-homeassistant/tree/v1.0.0) (2020-11-07)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-homeassistant/compare/v0.2.2...v1.0.0)
+
+**Breaking changes:**
+
+- Drop puppet4; require at least Puppet 5.5.8; require puppet-python 2.x & modulesync 2.9.0 [\#26](https://github.com/voxpupuli/puppet-homeassistant/pull/26) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- Expand PATH variable in service file [\#29](https://github.com/voxpupuli/puppet-homeassistant/pull/29) ([lordievader](https://github.com/lordievader))
+
+**Merged pull requests:**
+
+- modulesync 3.0.0 & puppet-lint updates [\#31](https://github.com/voxpupuli/puppet-homeassistant/pull/31) ([bastelfreak](https://github.com/bastelfreak))
+- Allow puppetlabs/stdlib 6.x [\#28](https://github.com/voxpupuli/puppet-homeassistant/pull/28) ([dhoppe](https://github.com/dhoppe))
+
 ## [v0.2.2](https://github.com/voxpupuli/puppet-homeassistant/tree/v0.2.2) (2018-10-14)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-homeassistant/compare/v0.2.1...v0.2.2)
