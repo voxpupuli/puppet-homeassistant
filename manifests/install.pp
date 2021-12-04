@@ -1,6 +1,7 @@
 class homeassistant::install (
   $home    = $homeassistant::home,
   $confdir = $homeassistant::confdir,
+  $version = $homeassistant::version,
 ) inherits homeassistant {
   group { 'homeassistant':
     ensure => present,
@@ -41,7 +42,7 @@ class homeassistant::install (
   }
 
   python::pip { 'homeassistant':
-    ensure     => present,
+    ensure     => $version,
     virtualenv => $home,
     owner      => 'homeassistant',
     group      => 'homeassistant',
