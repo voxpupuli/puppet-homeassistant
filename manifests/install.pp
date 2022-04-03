@@ -28,10 +28,10 @@ class homeassistant::install (
   }
 
   class { 'python':
-    ensure     => present,
-    version    => 'system',
-    pip        => 'present',
-    dev        => 'present',
+    ensure  => present,
+    version => 'system',
+    pip     => 'present',
+    dev     => 'present',
   }
 
   python::pyvenv { $home:
