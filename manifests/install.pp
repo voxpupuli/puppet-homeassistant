@@ -31,7 +31,6 @@ class homeassistant::install (
     ensure     => present,
     version    => 'system',
     pip        => 'present',
-    virtualenv => 'present',
     dev        => 'present',
   }
 
