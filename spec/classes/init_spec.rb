@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe 'homeassistant' do
   on_supported_os.each do |os, facts|
@@ -40,6 +42,7 @@ describe 'homeassistant' do
         it { is_expected.to contain_concat__fragment('homeassistant').with_content(%r{^  unit_system: metric$}) }
         it { is_expected.to contain_concat__fragment('homeassistant').with_content(%r{^  time_zone: Europe/Paris$}) }
       end
+
       context 'with all parameters set' do
         let(:params) do
           {
