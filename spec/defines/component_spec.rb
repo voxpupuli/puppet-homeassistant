@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe 'homeassistant::component' do
   let(:title) { 'mine' }
@@ -20,10 +22,12 @@ describe 'homeassistant::component' do
       end
 
       it { is_expected.to contain_concat__fragment('mine').with_target('configuration.yaml') }
+
       context 'with no parameters' do
         it { is_expected.to contain_concat__fragment('mine').with_content(%r{^mine:$}) }
         it { is_expected.not_to contain_file('/etc/homeassistant/components/mine.yaml') }
       end
+
       context 'with config parameters set' do
         let(:params) do
           {
@@ -36,6 +40,7 @@ describe 'homeassistant::component' do
         it { is_expected.to contain_file('/etc/homeassistant/components/mine/mine.yaml').with_content(%r{^abc:$}) }
         it { is_expected.to contain_file('/etc/homeassistant/components/mine/mine.yaml').with_content(%r{^\s*- def$}) }
       end
+
       context 'with config and component parameters set' do
         let(:params) do
           {
@@ -49,6 +54,7 @@ describe 'homeassistant::component' do
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^abc:$}) }
         it { is_expected.to contain_file('/etc/homeassistant/components/special/mine.yaml').with_content(%r{^\s*- def$}) }
       end
+
       context 'with complicated value with spaces in' do
         let(:params) do
           {
