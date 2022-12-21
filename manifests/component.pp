@@ -15,7 +15,7 @@ define homeassistant::component (
   # otherwise don't bother creating a file.
   if $config {
     $_content = "# Component ${_instance}\n${_instance}: !include components/${component}/${name}.yaml\n\n"
-    ensure_resource('file', "${confdir}/components/${component}",{
+    ensure_resource('file', "${confdir}/components/${component}", {
         ensure  => directory,
         owner   => 'homeassistant',
         group   => 'homeassistant',
