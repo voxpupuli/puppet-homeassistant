@@ -7,8 +7,10 @@ class homeassistant (
   String $time_zone,
   Optional[Hash] $known_devices = undef,
   Stdlib::Absolutepath $home   = '/srv/homeassistant',
-  Stdlib::Absolutepath $confdir = '/etc/homeassistant',
+  Stdlib::Absolutepath $confdir = $facts['os']['name'] ? {'Archlinux' => '/var/lib/hass', default => '/etc/homeassistant'},
   Boolean $known_devices_replace = false,
+  Enum['source', 'package'] $install_method = $facts['os']['name'] ? {'Archlinux' => 'package', default => 'source'},
+  String $service_name = $facts['os']['name'] ? {'Archlinux' => 'home-assistant', default => 'homeassistant'},
 ) {
   class { 'homeassistant::install': }
   -> class { 'homeassistant::config': }

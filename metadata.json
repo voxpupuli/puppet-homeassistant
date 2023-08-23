@@ -65,6 +65,9 @@
         "18.04",
         "20.04"
       ]
+    },
+    {
+      "operatingsystem": "Archlinux"
     }
   ],
   "requirements": [
