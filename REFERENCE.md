@@ -45,6 +45,8 @@ The following parameters are available in the `homeassistant` class:
 * [`service_name`](#-homeassistant--service_name)
 * [`user`](#-homeassistant--user)
 * [`group`](#-homeassistant--group)
+* [`external_url`](#-homeassistant--external_url)
+* [`server_host`](#-homeassistant--server_host)
 
 ##### <a name="-homeassistant--location_name"></a>`location_name`
 
@@ -146,6 +148,22 @@ Data type: `String[1]`
 
 Default value: `$user`
 
+##### <a name="-homeassistant--external_url"></a>`external_url`
+
+Data type: `Stdlib::Httpurl`
+
+
+
+Default value: `"http://${facts['networking']['fqdn']}"`
+
+##### <a name="-homeassistant--server_host"></a>`server_host`
+
+Data type: `String[1]`
+
+
+
+Default value: `'0.0.0.0'`
+
 ### <a name="homeassistant--config"></a>`homeassistant::config`
 
 The homeassistant::config class.
@@ -162,6 +180,8 @@ The following parameters are available in the `homeassistant::config` class:
 * [`confdir`](#-homeassistant--config--confdir)
 * [`known_devices`](#-homeassistant--config--known_devices)
 * [`known_devices_replace`](#-homeassistant--config--known_devices_replace)
+* [`external_url`](#-homeassistant--config--external_url)
+* [`server_host`](#-homeassistant--config--server_host)
 
 ##### <a name="-homeassistant--config--location_name"></a>`location_name`
 
@@ -226,6 +246,22 @@ Data type: `Any`
 
 
 Default value: `$homeassistant::known_devices_replace`
+
+##### <a name="-homeassistant--config--external_url"></a>`external_url`
+
+Data type: `Any`
+
+
+
+Default value: `$homeassistant::external_url`
+
+##### <a name="-homeassistant--config--server_host"></a>`server_host`
+
+Data type: `Any`
+
+
+
+Default value: `$homeassistant::server_host`
 
 ### <a name="homeassistant--install"></a>`homeassistant::install`
 

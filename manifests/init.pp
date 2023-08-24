@@ -13,6 +13,8 @@ class homeassistant (
   String $service_name = $facts['os']['name'] ? {'Archlinux' => 'home-assistant', default => 'homeassistant'},
   String[1] $user = $facts['os']['name'] ? {'Archlinux' => 'hass', default => 'homeassistant'},
   String[1] $group = $user,
+  Stdlib::Httpurl $external_url = "http://${facts['networking']['fqdn']}",
+  String[1] $server_host = '0.0.0.0',
 ) {
   class { 'homeassistant::install': }
   -> class { 'homeassistant::config': }

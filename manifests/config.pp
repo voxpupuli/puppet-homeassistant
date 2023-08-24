@@ -7,6 +7,8 @@ class homeassistant::config (
   $confdir       = $homeassistant::confdir,
   $known_devices = $homeassistant::known_devices,
   $known_devices_replace = $homeassistant::known_devices_replace,
+  $external_url = $homeassistant::external_url,
+  $server_host = $homeassistant::server_host,
 ) inherits homeassistant {
   concat { 'configuration.yaml':
     path   => "${confdir}/configuration.yaml",
