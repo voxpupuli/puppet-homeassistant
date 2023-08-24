@@ -11,6 +11,7 @@ class homeassistant::install (
     home   => $home,
     system => true,
     gid    => $homeassistant::group,
+    shell  => '/usr/bin/nologin',
   }
   file { $confdir:
     ensure => directory,
