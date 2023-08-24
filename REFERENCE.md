@@ -43,6 +43,8 @@ The following parameters are available in the `homeassistant` class:
 * [`known_devices_replace`](#-homeassistant--known_devices_replace)
 * [`install_method`](#-homeassistant--install_method)
 * [`service_name`](#-homeassistant--service_name)
+* [`user`](#-homeassistant--user)
+* [`group`](#-homeassistant--group)
 
 ##### <a name="-homeassistant--location_name"></a>`location_name`
 
@@ -127,6 +129,22 @@ Data type: `String`
 
 
 Default value: `$facts['os']['name'] ? {'Archlinux' => 'home-assistant', default => 'homeassistant'`
+
+##### <a name="-homeassistant--user"></a>`user`
+
+Data type: `String[1]`
+
+
+
+Default value: `$facts['os']['name'] ? {'Archlinux' => 'hass', default => 'homeassistant'`
+
+##### <a name="-homeassistant--group"></a>`group`
+
+Data type: `String[1]`
+
+
+
+Default value: `$user`
 
 ### <a name="homeassistant--config"></a>`homeassistant::config`
 

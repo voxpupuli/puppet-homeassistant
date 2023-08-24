@@ -10,8 +10,8 @@ class homeassistant::config (
 ) inherits homeassistant {
   concat { 'configuration.yaml':
     path   => "${confdir}/configuration.yaml",
-    owner  => 'homeassistant',
-    group  => 'homeassistant',
+    owner  => $homeassistant::user,
+    group  => $homeassistant::group,
   }
   concat::fragment { 'homeassistant':
     target  => 'configuration.yaml',
@@ -22,8 +22,8 @@ class homeassistant::config (
   if $known_devices {
     concat { 'known_devices.yaml':
       path    => "${confdir}/known_devices.yaml",
-      owner   => homeassistant,
-      group   => homeassistant,
+      owner   => $homeassistant::user,
+      group   => $homeassistant::group,
       replace => $known_devices_replace,
       mode    => '0640',
     }

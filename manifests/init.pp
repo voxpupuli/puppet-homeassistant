@@ -11,6 +11,8 @@ class homeassistant (
   Boolean $known_devices_replace = false,
   Enum['source', 'package'] $install_method = $facts['os']['name'] ? {'Archlinux' => 'package', default => 'source'},
   String $service_name = $facts['os']['name'] ? {'Archlinux' => 'home-assistant', default => 'homeassistant'},
+  String[1] $user = $facts['os']['name'] ? {'Archlinux' => 'hass', default => 'homeassistant'},
+  String[1] $group = $user,
 ) {
   class { 'homeassistant::install': }
   -> class { 'homeassistant::config': }
