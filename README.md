@@ -18,13 +18,13 @@ Home Assistant - https://home-assistant.io/
 To install and start homeassistant
 
 ```puppet
-include ::homeassistant
+include homeassistant
 ```
 
 or with a custom configuration.
 
 ```puppet
-class{'::homeassistant':
+class{'homeassistant':
     location_name => 'Arc de Triomphe',
     latitude      => 48.8738,
     longitude     => 2.2950,
