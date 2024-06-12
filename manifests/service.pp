@@ -1,9 +1,7 @@
-class homeassistant::service (
-  $home         = $homeassistant::home,
-) inherits homeassistant {
-  service { 'homeassistant':
+# @api private
+class homeassistant::service {
+  service { $homeassistant::service_name:
     ensure  => true,
     enable  => true,
-    require => Systemd::Unit_file['homeassistant.service'],
   }
 }
