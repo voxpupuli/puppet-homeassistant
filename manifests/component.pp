@@ -17,14 +17,14 @@ define homeassistant::component (
     $_content = "# Component ${_instance}\n${_instance}: !include components/${component}/${name}.yaml\n\n"
     ensure_resource('file', "${confdir}/components/${component}", {
         ensure  => directory,
-        owner   => 'homeassistant',
-        group   => 'homeassistant',
-        notify   => Service['homeassistant'],
+        owner   => $homeassistant::user,
+        group   => $homeassistant::group,
+        notify  => Service['homeassistant'],
     })
     file { "${confdir}/components/${component}/${name}.yaml":
       ensure  => file,
-      owner   => 'homeassistant',
-      group   => 'homeassistant',
+      owner   => $homeassistant::user,
+      group   => $homeassistant::group,
       content => inline_template("# Puppet config for component <%= @_instance %> \n<%= @config.to_yaml(:line_width => -1) %>\n"),
       notify  => Service['homeassistant'],
     }

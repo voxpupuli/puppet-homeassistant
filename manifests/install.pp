@@ -2,51 +2,62 @@ class homeassistant::install (
   $home    = $homeassistant::home,
   $confdir = $homeassistant::confdir,
 ) inherits homeassistant {
-  group { 'homeassistant':
+  group { $homeassistant::group:
     ensure => present,
     system => true,
   }
-
-  user { 'homeassistant':
+  user { $homeassistant::user:
     ensure => present,
     home   => $home,
     system => true,
-    gid    => 'homeassistant',
+    gid    => $homeassistant::group,
+    shell  => '/usr/bin/nologin',
   }
-
   file { $confdir:
     ensure => directory,
-    owner  => 'homeassistant',
-    group  => 'homeassistant',
-  }
-  file { "${confdir}/components":
-    ensure  => directory,
-    owner   => 'homeassistant',
-    group   => 'homeassistant',
-    purge   => true,
-    recurse => true,
+    owner  => $homeassistant::user,
+    group  => $homeassistant::group,
   }
 
-  class { 'python':
-    ensure  => present,
-    version => 'system',
-    pip     => 'present',
-    dev     => 'present',
-  }
+  if $homeassistant::install_method == 'package' {
+    package { 'home-assistant':
+      ensure => 'installed',
+      before => File[$confdir], # we need to install the package first because it provides the user/group
+    }
+    systemd::dropin_file { 'dynamicuser.conf':
+      unit    => 'home-assistant.service',
+      content => "# THIS FILE IS MANAGED BY PUPPET\n[Service]\nDynamicUser=false\n",
+    }
+  } else {
+    file { "${confdir}/components":
+      ensure  => directory,
+      owner   => $homeassistant::user,
+      group   => $homeassistant::group,
+      purge   => true,
+      recurse => true,
+    }
 
-  python::pyvenv { $home:
-    ensure => present,
-    owner  => 'homeassistant',
-    group  => 'homeassistant',
-  }
+    class { 'python':
+      ensure  => present,
+      version => 'system',
+      pip     => 'present',
+      dev     => 'present',
+    }
 
-  python::pip { 'homeassistant':
-    ensure     => present,
-    virtualenv => $home,
-    owner      => 'homeassistant',
-    group      => 'homeassistant',
-  }
-  systemd::unit_file { 'homeassistant.service':
-    content => template("${module_name}/homeassistant.service.erb"),
+    python::pyvenv { $home:
+      ensure => present,
+      owner  => $homeassistant::user,
+      group  => $homeassistant::group,
+    }
+
+    python::pip { 'homeassistant':
+      ensure     => present,
+      virtualenv => $home,
+      owner      => $homeassistant::user,
+      group      => $homeassistant::group,
+    }
+    systemd::unit_file { 'homeassistant.service':
+      content => template("${module_name}/homeassistant.service.erb"),
+    }
   }
 }
