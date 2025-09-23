@@ -16,10 +16,10 @@ define homeassistant::component (
   if $config {
     $_content = "# Component ${_instance}\n${_instance}: !include components/${component}/${name}.yaml\n\n"
     ensure_resource('file', "${confdir}/components/${component}", {
-        ensure  => directory,
-        owner   => 'homeassistant',
-        group   => 'homeassistant',
-        notify   => Service['homeassistant'],
+      ensure  => directory,
+      owner   => 'homeassistant',
+      group   => 'homeassistant',
+      notify   => Service['homeassistant'],
     })
     file { "${confdir}/components/${component}/${name}.yaml":
       ensure  => file,
