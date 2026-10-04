@@ -16,7 +16,7 @@ describe 'homeassistant' do
             longitude: -14.7,
             elevation: 76,
             unit_system: 'metric',
-            time_zone: 'Europe/Paris'
+            time_zone: 'Europe/Paris',
           }
         end
 
@@ -53,7 +53,7 @@ describe 'homeassistant' do
             unit_system: 'metric',
             time_zone: 'Europe/Paris',
             home: '/foo',
-            confdir: '/etc/bar'
+            confdir: '/etc/bar',
           }
         end
 
